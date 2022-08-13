@@ -1,91 +1,38 @@
 import type { NextPage } from 'next'
 import React, { useState } from 'react'
 import dataTest from './api/dataTest'
+import dataTypes from './api/types'
+
+import { Command } from '../helpers/interfaces'
+import { textToCommand, downloadTxtFile } from '../helpers';
 
 const Home: NextPage = () => {
-  const [text, setText] = useState<any>(dataTest);
-  const [result, setResult] = useState<any>({});
+  const [text, setText] = useState<string>(dataTest);
+  const [result, setResult] = useState<Command>({});
   const [repeats, setRepeats] = useState<Number>(15);
+  const [types, setTypes] = useState<Array<object>>(dataTypes);
 
   function handleCommand() {
-    const splitted = text.split(/\r?\n|\r|\n/g);
-    const temp:any = {};
-    let lastEvent:string = '';
-
-    for (const item of splitted) {
-      const messageRegex = /\[.*\]/i;
-      const stageRegex = /\(.*\)/i;
-
-      if (stageRegex.test(item)) {
-        if (!temp[lastEvent]) continue;
-
-        const stageFullSplit = item.split(' - ');
-        const stageSplit = stageFullSplit[0].split('(');
-        const stage = stageSplit[0].trim();
-        let levels:Array<number> = stageSplit[1].replace(')', '').split(',').map((level:any) => Number(level));
-        const levelFinal = Math.max(...levels);
-
-        temp[lastEvent].stages.push({
-          stage,
-          levels,
-          levelFinal,
-          text: `stage event ${stage}${levelFinal} ${repeats}`
-        });
-      } else if(messageRegex.test(item)) {
-        const eventSplit = item.split(']');
-        const type = eventSplit[0].trim().replace('[', '');
-        const event = eventSplit[1].trim().replace(']', '');
-        lastEvent = event;
-
-        temp[event] = {
-          type,
-          event,
-          stages: [],
-          text: `{message} Farming event: [${type}] ${event}`,
-        };
-      };
-    }
-
-    setResult(temp);
-
-    console.log(temp);
+    const command = textToCommand(text, { repeats, types });
+    setResult(command);
   }
 
-  function handleChange(value: String) {
+  function handleChange(value: string) {
     setText(value);
   }
 
-  function generateTxt() {
-    if (Object.keys(result).length <= 0) return alert('Error 8000+');
-
-    let txt:String = '';
-
-    for (const event of Object.values(result)) {
-      txt += `${event.text} \n`;
-      
-      for (const stage of event.stages) {
-        txt += `${stage.text} \n`;
-      }
-    }
-
-    return txt;
-  }
-
-  function downloadTxtFile() {
-    const txt = generateTxt();
-    const element = document.createElement("a");
-    const file = new Blob([txt], {
-      type: "text/plain"
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = "generated_custom_command.txt";
-    document.body.appendChild(element);
-    element.click();
+  function download() {
+    downloadTxtFile(result);
   };
 
   return (
     <main className={'main'}>
       <div className={'form'}>
+        <div className='filters'>
+          <h4 className="title">
+            Filters:
+          </h4>
+        </div>
         <textarea placeholder='Insira todos os stages dessa forma: id_stage:repetições, id_stage:repetições...' value={text} onChange={(event) => handleChange(event.target.value)} />
         <button onClick={handleCommand}>Generate Custom Command</button>
       </div>
@@ -93,6 +40,9 @@ const Home: NextPage = () => {
       <div className={'result'}>
         {Object.keys(result).length > 0 && (
           <>
+            <h4 className="title">
+              Custom Command
+            </h4>
             <div className={'text'}>
               { 
                 Object.values(result).map((item:any, index) => {
@@ -110,7 +60,7 @@ const Home: NextPage = () => {
               }
             </div>
             <div className='bottom-actions'>
-              <button onClick={downloadTxtFile}>Download</button>
+              <button onClick={download}>Download</button>
             </div>
           </>
         )}

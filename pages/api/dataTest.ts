@@ -1,4 +1,4 @@
-export default <String> `
+export default <string> `
 [Growth] Battle for Awakening Medals
 111001 (0, 1, 2) - [AGL] Awakening Medal
 111002 (0, 1, 2) - [TEQ] Awakening Medal

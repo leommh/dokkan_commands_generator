@@ -78,6 +78,12 @@ a {
   margin-left: 1rem;
 }
 
+.main .result .title {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
 .main .result .text {
   flex: 1;
   background-color: #666;
