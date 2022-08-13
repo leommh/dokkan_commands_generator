@@ -1,8 +1,6 @@
-import { Filters, Command } from './interfaces';
+import { Types, Command } from './interfaces';
 
-export const textToCommand:Function = (text:string, filters:Filters) => {
-  const { repeats } = filters;
-
+export const textToCommand:Function = (text:string, repeats: number) => {
   const splitted = text.split(/\r?\n|\r|\n/g);
   const command:Command = {};
   let lastEvent:string = '';
@@ -44,10 +42,12 @@ export const textToCommand:Function = (text:string, filters:Filters) => {
   return command;
 };
 
-export const commandToTxt = (command: Command) => {
+export const commandToTxt = (command: Command, types: Types) => {
   let txt:string = '';
 
   for (const event of Object.values(command)) {
+    if (!types[event.type].checked) continue;
+    
     txt += `${event.text} \n`;
     
     for (const stage of event.stages) {
@@ -58,10 +58,9 @@ export const commandToTxt = (command: Command) => {
   return txt;
 }
 
-export const downloadTxtFile = (command: Command) => {
-  const txt:string = commandToTxt(command);
+export const downloadTxtFile = (resultText: string) => {
   const element = document.createElement("a");
-  const file = new Blob([txt], {
+  const file = new Blob([resultText], {
     type: "text/plain"
   });
   element.href = URL.createObjectURL(file);

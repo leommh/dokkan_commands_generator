@@ -1,6 +1,15 @@
+export interface Type {
+  name: string;
+  checked: boolean;
+}
+
+export interface Types {
+  [key: string]: Type
+}
+
 export interface Filters {
   repeats: number;
-  type: Array<object>;
+  type: Array<Type>;
 }
 
 export interface Stage {
