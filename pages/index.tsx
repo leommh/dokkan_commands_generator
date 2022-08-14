@@ -95,7 +95,8 @@ const Home: NextPage = () => {
         </Flex>
 
         <FormControl mb={15} className='textarea-command'>
-          <FormLabel>Text</FormLabel>
+          <FormLabel>Insert text to generate command (use event list in bot to view all text)</FormLabel>
+          <Text mb={5} size="sm" color="red">by default I already left a list of events inserted below to make it easier (this list is from 08/14/2022)</Text>
           <Textarea
             value={text}
             onChange={(event) => handleChange(event.target.value)}
@@ -117,16 +118,17 @@ const Home: NextPage = () => {
           <Box p={4} mt={0} className={'result'}>
             <Divider mb={4} />
             <FormControl mb={15} className='textarea-command'>
-              <FormLabel>Text</FormLabel>
+              <FormLabel>Dokkan Custom Command</FormLabel>
               <Textarea
                 value={resultText}
                 placeholder=''
                 variant="filled"
                 size='md'
+                style={{ borderColor: 'green', background: 'white' }}
               />
             </FormControl>
 
-            <Button onClick={download} colorScheme='teal' variant='solid'>Download</Button>
+            <Button onClick={download} colorScheme='green' variant='solid'>Download</Button>
           </Box>
         )}
     </main>
