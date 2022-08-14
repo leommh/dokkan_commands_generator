@@ -22,7 +22,7 @@ export const textToCommand:Function = (text:string, repeats: number) => {
         stage,
         levels,
         levelFinal,
-        text: `stage event ${stage}${levelFinal} ${repeats}`
+        text: `event stage ${stage} ${levelFinal} ${repeats}`
       });
     } else if(messageRegex.test(item)) {
       const eventSplit = item.split(']');
@@ -34,7 +34,7 @@ export const textToCommand:Function = (text:string, repeats: number) => {
         type,
         event,
         stages: [],
-        text: `{message} Farming event: [${type}] ${event}`,
+        text: `message {message} Farming event: [${type}] ${event}`,
       };
     };
   }
@@ -48,10 +48,10 @@ export const commandToTxt = (command: Command, types: Types) => {
   for (const event of Object.values(command)) {
     if (!types[event.type].checked) continue;
     
-    txt += `${event.text} \n`;
+    txt += `${event.text}\n`;
     
     for (const stage of event.stages) {
-      txt += `${stage.text} \n`;
+      txt += `${stage.text}\n`;
     }
   }
 
