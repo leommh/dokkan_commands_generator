@@ -18,30 +18,38 @@ export default <string> `
 [Story] Fearsome Super Elite
 401001 (0, 1, 2) - Fearsome Super Elite
 401002 (2) - The Final Showdown
-[Story] Mercenary Tao Strikes Back
-404001 (0, 1, 2) - Mercenary Tao Strikes Back
-404002 (2) - The Assassin's Struggle
-[Story] Vicious Mechanical Monarch
-406001 (0, 1, 2) - Vicious Mechanical Monarch
-406002 (0, 1, 2) - The Best Form of Persistence
-406003 (2) - Raging Counterstrike
-[Story] Cold-Blooded King
-408001 (0, 1, 2) - Cold-Blooded King
-408002 (2) - Dignity of a Clan
-[Story] Savage Sovereign
-409001 (0, 1, 2) - Savage Sovereign
-409002 (2) - An Invasion Bet on Primacy
-[Story] Gentle Destroyer
-415001 (0, 1, 2) - Great Power Unleashed
-415002 (2) - Terrestrial Flash
-415003 (2) - Treasured Battle Device
-415004 (4) - Extreme Stage
-[Story] The Ancient Space Pirate
-420001 (0, 1, 2) - The Ancient Space Pirate
-420002 (2) - The Strongest Space Pirate
-[Story] Prodigy Prince
-421001 (0, 1, 2) - Prodigy Prince
-421002 (2) - Proof of Genius
+[Story] Master of Masters
+405001 (0, 1, 2) - Master of Masters
+405002 (2) - The Determined Martial Artist
+[Story] The Mysterious Mask
+411001 (0, 1, 2) - Titanic Tag Team
+411002 (2) - Peculiar Collaboration
+411003 (2) - Super Power Behind the Mask
+411004 (4) - Extreme Stage
+[Story] The Best Fighter of West Quadrant
+412001 (0, 1, 2) - The Best Fighter of West Quadrant
+412002 (2) - True Strength
+[Story] The Masked Martial Artist
+413001 (0, 1, 2) - The Masked Martial Artist
+413002 (2) - Behind the Mask
+[Story] The Time-Traveling Warrior
+414001 (0, 1, 2) - Future Hope
+414002 (2) - The Hope Deep Inside
+414003 (2) - Evil-Slashing Blade
+414004 (4) - Extreme Stage
+[Story] The Divine Demonic Namekian Warrior
+416001 (0, 1, 2) - Divine Demonic Namekian Warrior
+416002 (2) - The Power of Piccolo Reborn
+[Story] The Full-Hearted Fighter
+417001 (0, 1, 2) - Full-Hearted Fighter
+417002 (2) - Proud Martial Artist
+[Story] Success? Fail? A Fusion of Super Forces
+418001 (0, 1, 2) - A Fusion of Super Forces!?
+418002 (2) - A Pudgy Hero?
+418003 (2) - Heroes Get Exhausted!?
+[Story] The Space-Time Traveler
+422001 (0, 1, 2) - The Space-Time Traveler
+422002 (2) - The Time Patrol Warrior
 [Story] The Low-Class Warrior: Raditz's Pride
 336001 (2) - Raditz the Weakling
 336002 (0, 2) - Father's Dream
@@ -337,19 +345,23 @@ Next-Generation Rising Stars
 [Growth] An Epic Showdown
 403001 (0, 1, 2) - An Epic Showdown
 403002 (0, 1, 2) - Super Saiyan Goku
-[Challenge] Summit of the Universe
-602001 (2) - Defying the Emperor
-602002 (2) - True Fear
-602003 (3) - [VS. Extreme STR] Summit of the Universe
-602004 (3) - [VS. Extreme AGL] Summit of the Universe
+[Challenge] Transcended Warrior
+601001 (2) - Challenging the Legend
+601002 (2) - The Real Battle
+601003 (3) - [VS. Super TEQ] Transcended Warrior
+601004 (3) - [VS. Super PHY] Transcended Warrior
+[Challenge] Protector of Future Peace
+603001 (2) - "Hope" Returns
+603002 (2) - A Gift from Time Traveling
+603003 (3) - Protector of Future Peace
 [Challenge] Pride-Staked Awakening
 604001 (2) - Prince's Pride
 604002 (2) - Vegeta's Confidence
 604003 (3) - Super Saiyan Awakens
-[Challenge] Looming Menace
-605001 (2) - Mysterious Monster
-605002 (2) - A Monster with Goku's Ki
-605003 (3) - Life Form of Hate and Ruin
+[Challenge] All-Out Earthling Warrior
+606001 (2) - Spirited Earth Defense
+606002 (2) - Fruits of Training
+606003 (3) - Raging Killer Move
 [Growth] Activate Your Hidden Potential
 231001 (2) - AGL Hidden Potential Event
 231002 (2) - TEQ Hidden Potential Event
@@ -407,10 +419,10 @@ Next-Generation Rising Stars
 320023 (2) - Explosive Parental Bond
 320024 (2) - Galactic Adventurer
 320025 (2) - Angelic Patrol
-[Challenge] Bringer of Destruction and Nightmares
-607001 (2) - Despicable Mastermind
-607002 (2) - Unusual Villains
-607003 (3) - Worldwide Terror
+[Challenge] Inherited Power
+608001 (2) - Courteous Son
+608002 (2) - Power Level Surpassing His Father's
+608003 (3) - Power in a Pinch
 [Challenge] Infinite Dragon Ball History
 713001 (5) - Androids/Cell Saga (vs. Super Warriors)
 713002 (5) - Androids/Cell Saga (vs. Androids)
