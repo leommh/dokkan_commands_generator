@@ -29,6 +29,7 @@ const Home: NextPage = () => {
   const [resultText, setResultText] = useState<string>('');
   const [repeats, setRepeats] = useState<number>(15);
   const [types, setTypes] = useState<Types>(dataTypes);
+  const [updates, setUpdate] = useState<number>(0);
 
   function handleCommand() {
     const command = textToCommand(text, repeats);
@@ -49,6 +50,7 @@ const Home: NextPage = () => {
     const newTypes = types;
     newTypes[name].checked = checked;
     setTypes(newTypes);
+    setUpdate(updates + 1);
   }
 
   return (
