@@ -85,8 +85,8 @@ const Home: NextPage = () => {
             <Box>
               <FormControl>
                 <FormLabel>Repeats</FormLabel>
-                <Select placeholder='Select option' defaultValue={repeats}>
-                  {dataRepeats.map((number, index) => <option key={index + '_select'} value={number} onChange={(value) => setRepeats(number)}>{number}</option>)}
+                <Select placeholder='Select option' defaultValue={repeats} onChange={(event) => setRepeats(Number(event.target.value))}>
+                  {dataRepeats.map((number, index) => <option key={index + '_select'} value={number}>{number}</option>)}
                 </Select>
               </FormControl>
             </Box>
@@ -105,7 +105,11 @@ const Home: NextPage = () => {
           />
         </FormControl>
 
-        <Button onClick={handleCommand} colorScheme='teal' variant='outline'>Generate Custom Command</Button>
+        <Flex>
+          <Button onClick={handleCommand} colorScheme='teal' variant='solid'>Generate Custom Command</Button>
+          <Button ml={5} onClick={() => setText('')} colorScheme='black' variant='outline'>Clear</Button>
+        </Flex>
+ 
       </Box>
 
      
