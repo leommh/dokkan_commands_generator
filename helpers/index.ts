@@ -1,6 +1,6 @@
 import { Types, Command } from './interfaces';
 
-export const textToCommand:Function = (text:string, repeats: number) => {
+export const textToCommand:Function = (text:string) => {
   const splitted = text.split(/\r?\n|\r|\n/g);
   const command:Command = {};
   let lastEvent:string = '';
@@ -21,8 +21,7 @@ export const textToCommand:Function = (text:string, repeats: number) => {
       command[lastEvent].stages.push({
         stage,
         levels,
-        levelFinal,
-        text: `event stage ${stage} ${levelFinal} ${repeats}`
+        levelFinal
       });
     } else if(messageRegex.test(item)) {
       const eventSplit = item.split(']');
@@ -33,8 +32,7 @@ export const textToCommand:Function = (text:string, repeats: number) => {
       command[event] = {
         type,
         event,
-        stages: [],
-        text: `message {message} Farming event: [${type}] ${event}`,
+        stages: []
       };
     };
   }
@@ -42,16 +40,35 @@ export const textToCommand:Function = (text:string, repeats: number) => {
   return command;
 };
 
-export const commandToTxt = (command: Command, types: Types) => {
+export const commandToTxt = (command: Command, types: Types, repeats:number, difficulty: number) => {
   let txt:string = '';
 
   for (const event of Object.values(command)) {
     if (!types[event.type].checked) continue;
     
-    txt += `${event.text}\n`;
-    
+    const eventTxt =  `message {message} Farming event: [${event.type}] ${event}\n`
+    const stageTxtArray = [];
+
     for (const stage of event.stages) {
-      txt += `${stage.text}\n`;
+      if (difficulty == -2) {
+        stageTxtArray.push(`event stage ${stage.stage} ${stage.levelFinal} ${repeats}\n`)
+      } else {
+        for (const level of stage.levels) {
+          if (difficulty == -1) {
+            stageTxtArray.push(`event stage ${stage.stage} ${level} ${repeats}\n`)
+          } else if (difficulty == level) {
+            stageTxtArray.push(`event stage ${stage.stage} ${level} ${repeats}\n`)
+          }
+        }
+      }
+    }
+
+    // Só adiciona mensagem se tiver stages válidos (baseado nos filtros)
+    if (stageTxtArray.length > 0) {
+      txt += eventTxt;
+      for (const stageTxt of stageTxtArray) {
+        txt += stageTxt;
+      }
     }
   }
 

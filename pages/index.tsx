@@ -18,8 +18,9 @@ import {
 import commandExample from '../data/commandExample'
 import dataTypes from '../data/types'
 import dataRepeats from '../data/repeats'
+import dataDifficulties from '../data/difficulties'
 
-import { Command, Types } from '../helpers/interfaces'
+import { Command, Types, Difficulty } from '../helpers/interfaces'
 import { textToCommand, downloadTxtFile, commandToTxt } from '../helpers';
 
 const Home: NextPage = () => {
@@ -28,13 +29,14 @@ const Home: NextPage = () => {
   const [text, setText] = useState<string>(commandExample);
   const [resultText, setResultText] = useState<string>('');
   const [repeats, setRepeats] = useState<number>(15);
+  const [difficulty, setDifficulty] = useState<number>(-2);
   const [types, setTypes] = useState<Types>(dataTypes);
   const [updates, setUpdate] = useState<number>(0);
 
   function handleCommand() {
-    const command = textToCommand(text, repeats);
+    const command = textToCommand(text);
     result = command;
-    const commandText:string = commandToTxt(result, types);
+    const commandText:string = commandToTxt(result, types, repeats, difficulty);
     setResultText(commandText);
   }
 
@@ -60,7 +62,9 @@ const Home: NextPage = () => {
           <Center>
             <Text fontSize='lg' style={{ fontWeight: 'bold' }}>Filters</Text>
           </Center>
-         
+
+          <Divider mb={4} mt={4} />
+    
           <Flex gap='2'>
             <Box>
               <FormControl>
@@ -84,15 +88,28 @@ const Home: NextPage = () => {
 
             <Box>
               <FormControl>
-                <FormLabel>Repeats</FormLabel>
+                <FormLabel>Repeat</FormLabel>
                 <Select placeholder='Select option' defaultValue={repeats} onChange={(event) => setRepeats(Number(event.target.value))}>
-                  {dataRepeats.map((number, index) => <option key={index + '_select'} value={number}>{number}</option>)}
+                  {dataRepeats.map((number, index) => <option className={number == 15 ? 'recommended' : ''} key={index + '_select'} value={number}>{number}</option>)}
+                </Select>
+              </FormControl>
+            </Box>
+
+            <Spacer />
+
+            <Box>
+              <FormControl>
+                <FormLabel>Difficulty</FormLabel>
+                <Select placeholder='Select option' defaultValue={difficulty} onChange={(event) => setDifficulty(Number(event.target.value))}>
+                  {dataDifficulties.map((item: Difficulty, index) => <option className={item.class || ''} key={index + '_difficulty'} value={item.value}>{item.name}</option>)}
                 </Select>
               </FormControl>
             </Box>
             
           </Flex>
         </Flex>
+
+        <Divider mb={4} mt={4} />
 
         <FormControl mb={15} className='textarea-command'>
           <FormLabel>Insert text to generate command (use event list in bot to view all text)</FormLabel>
@@ -125,6 +142,7 @@ const Home: NextPage = () => {
                 variant="filled"
                 size='md'
                 style={{ borderColor: 'green', background: 'white' }}
+                readOnly
               />
             </FormControl>
 

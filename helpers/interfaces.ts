@@ -15,17 +15,21 @@ export interface Filters {
 export interface Stage {
   stage: string,
   levels: Array<number>,
-  levelFinal: number,
-  text: string
+  levelFinal: number
 }
 
 export interface Event {
   type: string,
   event: string,
-  stages: Array<Stage>,
-  text: string,
+  stages: Array<Stage>
 }
 
 export interface Command {
   [key: string]: Event
+}
+
+export interface Difficulty {
+  name: string,
+  value: number,
+  class: string,
 }

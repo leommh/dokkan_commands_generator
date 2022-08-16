@@ -38,3 +38,8 @@ a {
 .textarea-command textarea{
   min-height: 200px;
 }
+
+.recommended {
+  background: #c7c7 !important;
+  font-weight: bold !important;
+}
