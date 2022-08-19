@@ -46,7 +46,7 @@ export const commandToTxt = (command: Command, types: Types, repeats:number, dif
   for (const event of Object.values(command)) {
     if (!types[event.type].checked) continue;
     
-    const eventTxt =  `message {message} Farming event: [${event.type}] ${event}\n`
+    const eventTxt =  `message {message} Farming event: [${event.type}] ${event.event}\n`
     const stageTxtArray = [];
 
     for (const stage of event.stages) {
