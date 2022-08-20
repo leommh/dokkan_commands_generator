@@ -4,14 +4,14 @@ import type { NextRequest } from 'next/server'
 export function middleware (request: NextRequest) {
   const { geo } = request;
 
-  let translate = 'pt';
+  let locale = 'pt';
   if (!!geo && geo.country) {
     const country = geo.country.toLocaleLowerCase();
     if (country != 'br' && country != 'brazil' && country != 'brasil') {
-      translate = 'en';
+      locale = 'en';
     }
   }
 
-  request.headers.set('translate', translate)
+  request.headers.set('locale', locale)
   return NextResponse.next()
 }

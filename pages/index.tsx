@@ -162,7 +162,8 @@ const Home: NextPage = () => {
 export default Home
 
 export const getServerSideProps = async ({ req }: any) => {
-  const locale = req.cookies.translate || 'en';
+  const locale = req.headers.locale || 'en';
+  console.log('headers -> ', req.headers);
   const translateProps = await serverSideTranslations(locale, ['index']);
   return {
     props: {
