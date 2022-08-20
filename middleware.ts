@@ -9,11 +9,14 @@ export async function middleware (request: NextRequest) {
   const { geo } = request;
 
   let locale = 'en';
+  let country = '';
 
   if (!!geo && geo.country) {
-    const country = geo.country.toLocaleLowerCase();
+    country = geo.country.toLowerCase();
     locale = getLocale(country);
   }
+
+  console.log('locale -> ', locale, country);
 
   request.headers.set('locale', locale);
 
