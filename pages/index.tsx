@@ -15,6 +15,7 @@ import {
   Spacer,
   Center
 } from '@chakra-ui/react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 import commandExample from '../data/commandExample'
@@ -23,7 +24,7 @@ import dataRepeats from '../data/repeats'
 import dataDifficulties from '../data/difficulties'
 
 import { Command, Types, Difficulty } from '../helpers/interfaces'
-import { textToCommand, downloadTxtFile, commandToTxt, getLocaleProps } from '../helpers';
+import { textToCommand, downloadTxtFile, commandToTxt } from '../helpers';
 
 
 const Home: NextPage = () => {
@@ -161,7 +162,10 @@ const Home: NextPage = () => {
 export default Home
 
 export const getServerSideProps = async ({ req }: any) => {
-  const translateProps = await getLocaleProps(req);
+  const headers = req.header;
+  const locale = headers['locale'] || 'en';
+  const translateProps = await serverSideTranslations(locale, ['index']);
+
   return {
     props: {
       ...translateProps

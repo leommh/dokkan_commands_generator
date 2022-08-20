@@ -1,4 +1,3 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Types, Command } from './interfaces';
 
 export const textToCommand:Function = (text:string) => {
@@ -86,10 +85,3 @@ export const downloadTxtFile = (resultText: string) => {
   document.body.appendChild(element);
   element.click();
 };
-
-export const getLocaleProps = async (req:any) => {
-  const headers = req.header;
-  const locale = headers['locale'] || 'en';
-  const translateProps = await serverSideTranslations(locale, ['index']);
-  return translateProps;
-}

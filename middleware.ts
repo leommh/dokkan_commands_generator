@@ -17,6 +17,7 @@ export function middleware (request: NextRequest) {
   }
 
   console.log('geo => ', geo);
+  console.log('headers => ', headers);
 
   request.headers.set('locale', locale)
   return NextResponse.next()
