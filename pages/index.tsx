@@ -163,6 +163,7 @@ export default Home
 
 export const getServerSideProps = async ({ req }: any) => {
   const headers = req.headers;
+  console.log('headers ->', headers);
   const locale = headers['locale'] || 'en';
   const translateProps = await serverSideTranslations(locale, ['index']);
   return {

@@ -13,8 +13,9 @@ export async function middleware (request: NextRequest) {
 
   if (!!geo && geo.country) {
     country = geo.country.toLowerCase();
-    locale = getLocale(country);
   }
+
+  locale = getLocale(country);
 
   console.log('locale -> ', locale, country);
 
