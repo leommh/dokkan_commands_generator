@@ -2,12 +2,12 @@ import { Difficulty } from '../helpers/interfaces';
 
 const difficulties:Array<Difficulty> = [
   {
-    name: 'All',
+    name: 'all',
     value: -1,
     class: 'recommended',
   },
   {
-    name: 'Hardest stage',
+    name: 'hardestStage',
     value: -2,
     class: 'recommended',
   },

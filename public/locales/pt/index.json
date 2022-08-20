@@ -1,0 +1,16 @@
+{
+  "filters": "Filtros",
+  "types": "Tipos",
+  "repeats": "Repetições",
+  "difficulty": "Dificuldade",
+  "selectLabel": "Selecione",
+  "textareaLabel": "Insira o texto contendo os eventos (use o comando event list do bot para ver todos os eventos)",
+  "textareaPlaceholder": "Insira os eventos listados pelo bot...",
+  "textareaMsg": "Por padrão deixei uma lista de eventos atualizada para facilitar (atualizado em 08/14/2022)",  
+  "buttonCommandText": "Criar Custom Command",
+  "buttonClearText": "Limpar",
+  "resultLabel": "Dokkan Custom Command",
+  "resultDownload": "Baixar",
+  "all": "Todos",
+  "hardestStage": "Só o mais difícil"
+}
