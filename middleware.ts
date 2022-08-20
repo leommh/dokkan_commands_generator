@@ -5,13 +5,23 @@ export function middleware (request: NextRequest) {
   const { geo } = request;
 
   let locale = 'pt';
+  const headers:any = request.headers;
+  
+
   if (!!geo && geo.country) {
     const country = geo.country.toLocaleLowerCase();
-    if (country != 'br' && country != 'brazil' && country != 'brasil') {
-      locale = 'en';
-    }
+    locale = getLocale(country);
+  } else if (!!headers && headers['x-vercel-ip-country']) {
+    const country = headers['x-vercel-ip-country'].toLocaleLowerCase();
+    locale = getLocale(country);
   }
+
+  console.log('geo => ', geo);
 
   request.headers.set('locale', locale)
   return NextResponse.next()
+}
+
+function getLocale(country: string) {
+  return (country != 'br' && country != 'brazil' && country != 'brasil') ? 'en' : 'pt';
 }
