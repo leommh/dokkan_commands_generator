@@ -16,6 +16,7 @@ export async function middleware (request: NextRequest) {
   }
 
   locale = getLocale(country);
+  console.log('geo -> ', locale, ' - country -> ', country)
 
   const response = NextResponse.next()
   response.headers.set('locale', locale);
