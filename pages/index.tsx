@@ -161,9 +161,8 @@ const Home: NextPage = () => {
 
 export default Home
 
-export const getServerSideProps = async ({ req }: any) => {
-  const headers = req.headers;
-  console.log('headers ->', headers);
+export const getServerSideProps = async ({ res }: any) => {
+  const headers = res.getHeaders();
   const locale = headers['locale'] || 'en';
   const translateProps = await serverSideTranslations(locale, ['index']);
   return {

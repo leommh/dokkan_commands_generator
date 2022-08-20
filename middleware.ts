@@ -17,9 +17,8 @@ export async function middleware (request: NextRequest) {
 
   locale = getLocale(country);
 
-  console.log('locale -> ', locale, country);
+  const response = NextResponse.next()
+  response.headers.set('locale', locale);
 
-  request.headers.set('locale', locale);
-
-  return NextResponse.next();
+  return response;
 }
