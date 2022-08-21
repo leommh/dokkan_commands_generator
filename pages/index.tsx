@@ -15,7 +15,6 @@ import {
   Spacer,
   Center
 } from '@chakra-ui/react'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 import commandExample from '../data/commandExample'
@@ -160,15 +159,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-export const getServerSideProps = async ({ res }: any) => {
-  const headers = res.getHeaders();
-  console.log('headers -> ', headers);
-  const locale = headers['locale'] || 'en';
-  const translateProps = await serverSideTranslations(locale, ['index']);
-  return {
-    props: {
-      ...translateProps
-    },
-  };
-};

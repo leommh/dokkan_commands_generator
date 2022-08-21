@@ -4,9 +4,19 @@ import type { NextRequest } from 'next/server'
 function getLocale(country: string) {
   return (country != 'br' && country != 'brazil' && country != 'brasil') ? 'en' : 'pt';
 }
+const PUBLIC_FILE = /\.(.*)$/
 
-export async function middleware (request: NextRequest) {
-  const { geo } = request;
+export async function middleware (req: NextRequest) {
+  if (
+    req.nextUrl.pathname.startsWith('/_next') ||
+    req.nextUrl.pathname.includes('/api/') ||
+    req.nextUrl.pathname.includes('favicon') ||
+    PUBLIC_FILE.test(req.nextUrl.pathname)
+  ) {
+    return
+  }
+
+  const { geo } = req;
 
   let locale = 'en';
   let country = '';
@@ -16,10 +26,10 @@ export async function middleware (request: NextRequest) {
   }
 
   locale = getLocale(country);
-  console.log('geo -> ', locale, ' - country -> ', country)
 
-  const response = NextResponse.next()
-  response.headers.set('locale', locale);
+  if (req.nextUrl.locale === 'default') {
+    return NextResponse.redirect(new URL(`/${locale}${req.nextUrl.pathname}`, req.url))
+  }
 
-  return response;
+  return NextResponse.next();
 }
